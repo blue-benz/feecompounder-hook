@@ -10,6 +10,9 @@
 
 FeeCompounder Hook is Hook 5 of 8 in the Najnomics UHI9 Hookathon lineup, owned by Friend B under the Najnomics team. It captures a configurable slice of LP fee flow, accounts for LP ownership with shares, and compounds accumulated fees into the best configured yield route when Reactive Network says the tradeoff is worth it. The implementation differs from simple auto-compounders by separating fee accrual from execution, proving the event-to-callback path through a Reactive Smart Contract, and preserving proportional LP accounting across deposits, compounding, and withdrawals. Built for the UHI9 Hookathon — Impermanent Loss & Yield Systems.
 
+**Presentation:** https://gamma.app/docs/FeeCompounder-iovsvmuozm9c3jh  
+**Demo Video:** https://youtu.be/TtFMdKXqvRs
+
 ## Integration Banner
 
 > ⚛️ **Reactive Network Integration**  
