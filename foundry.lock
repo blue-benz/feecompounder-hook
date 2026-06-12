@@ -1,0 +1,11 @@
+{
+  "lib/reactive-lib": {
+    "tag": {
+      "name": "v0.2.0",
+      "rev": "f6990ce3526928d039fec78855b2004ff8d65c9f"
+    }
+  },
+  "lib/v4-hooks-public": {
+    "rev": "0ec65960e213d0bc38be91004c66d550a085c0dc"
+  }
+}
