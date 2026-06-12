@@ -28,8 +28,6 @@ FeeCompounder Hook is Hook 5 of 8 in the Najnomics UHI9 Hookathon lineup, owned 
 - [Demo Run](#demo-run)
 - [Test Coverage](#test-coverage)
 - [Local Development](#local-development)
-- [Security Considerations](#security-considerations)
-- [Known Limitations & Future Work](#known-limitations--future-work)
 - [Contributing & License](#contributing--license)
 - [Acknowledgements](#acknowledgements)
 
@@ -630,41 +628,6 @@ forge script script/DeployBootstrappedFeeCompounderRSC.s.sol:DeployBootstrappedF
 REACTIVE_WAIT_SECONDS=240 CALLBACK_WAIT_SECONDS=300 \
   bash script/testnet-e2e-with-txids.sh unichain-sepolia
 ```
-
-## Security Considerations
-
-1. **Reactive callback access control** — `triggerCompoundFromReactive` requires `msg.sender == callbackProxy` and `sender == reactiveSender`, so a direct external call cannot spoof the RSC path.
-2. **Direct compound path separation** — `triggerCompound` is restricted to `directCompoundCaller`, keeping the local/demo path separate from Reactive callback authorization.
-3. **Adapter whitelist** — `_compound` reverts unless the route is whitelisted, preventing the RSC from routing funds to arbitrary contracts.
-4. **Owner-controlled configuration** — fee reporter, route whitelist, default route, thresholds, gas ceiling, cooldown, max-hold blocks, compound BPS, and Reactive auth are owner-gated.
-5. **Input validation** — zero-address receivers, zero-amount deposits/withdrawals, invalid BPS values, unwhitelisted adapters, and missing shares revert explicitly.
-6. **Overflow and underflow protection** — Solidity `0.8.26` checked arithmetic protects the share and fee math from silent wrapping.
-7. **Reentrancy protection** — deposit, withdrawal, and compound entrypoints use `nonReentrant`; withdrawal updates share and pool state before external route withdrawals.
-8. **Graceful degradation if RSC goes offline** — `afterSwap` can force-compound through `defaultRoute` once `maxHoldBlocks` is exceeded. ⚠️ This depends on future swap activity to trigger `afterSwap` because Reactive Network is event-driven.
-9. **Callback debt handling** — the demo script checks `callbackDebt()` and calls `coverCallbackDebt()` before proving a fresh callback, avoiding a false-negative relay demonstration.
-10. **MEV surface** — compounding timing is visible once `FeesAccrued` is emitted, but route selection is whitelisted and deterministic; no arbitrary caller can redirect funds. ⚠️ The current demo does not implement private execution or MEV-aware routing.
-11. **Managed adapter trust model** — current adapters are demo-managed routes, not live Aave or Morpho integrations. ⚠️ Acknowledged — acceptable tradeoff because the hookathon proof focuses on share accounting, Reactive automation, and E2E callback delivery before mainnet-grade adapter risk.
-
-## Known Limitations & Future Work
-
-### Current Limitations
-
-- ⚠️ The Aave and Morpho adapters are managed demo adapters, not live protocol integrations.
-- ⚠️ `reportFees()` is a restricted backed-demo path; production fee capture should be integrated with the selected v4 fee-accounting design.
-- ⚠️ Branch coverage is not 100%; current verified coverage is 100% lines and 100% functions.
-- ⚠️ The frontend is a local demo/simulator rather than a wallet-connected production interface.
-- ⚠️ The hook improves fee productivity but does not hedge or eliminate impermanent loss.
-- ⚠️ The contracts have not been externally audited.
-
-### Future Work
-
-- **Live Aave v3 adapter** — Replace the managed Aave adapter with real `supply()` and `withdraw()` calls plus reserve-data APY reads for supported assets.
-- **Live Morpho Blue adapter** — Integrate Morpho markets with market ID configuration, share conversion, and failure handling for paused or illiquid markets.
-- **Per-pool route policy UI** — Let pool deployers tune minimum threshold, cooldown, max hold blocks, and preferred fallback route without redeploying the hook.
-- **Hysteresis for route switching** — Add route-change thresholds so small APY changes do not cause frequent adapter churn.
-- **Fork tests against external protocols** — Add fork tests for Aave and Morpho deposits, withdrawals, paused-market failures, and decimal normalization.
-- **Production fee capture** — Replace the demo fee reporter with final v4 fee interception/settlement mechanics that work with real PoolManager flows.
-- **Audit and deployment manifests** — Add chain-specific deployment JSON, verification metadata, and an external audit before mainnet use.
 
 ## Contributing & License
 
