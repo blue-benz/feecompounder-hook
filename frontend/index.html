@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1440" />
+    <title>FeeCompounder Hook — UHI9 Hookathon 2026</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext y='26' font-size='26'%3E%E2%9A%9B%EF%B8%8F%3C/text%3E%3C/svg%3E" />
+
+    <!-- Tailwind (CDN build — no PostCSS step required for a demo artifact) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              ink: "#070B12",
+              panel: "#0A0F18",
+              card: "#0E1420",
+              accent: "#22D3EE",
+              "accent-soft": "#67E8F9",
+              "accent-deep": "#0E7490",
+              line: "rgba(120,160,200,0.10)",
+              "line-strong": "rgba(120,160,200,0.20)",
+              txt: "#E6ECF2",
+              "txt-dim": "#7C8BA0",
+            },
+            fontFamily: {
+              sans: ["Inter", "ui-sans-serif", "system-ui", "sans-serif"],
+              mono: ["JetBrains Mono", "IBM Plex Mono", "ui-monospace", "monospace"],
+            },
+          },
+        },
+      };
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      html,
+      body,
+      #root {
+        height: 100%;
+        margin: 0;
+      }
+      body {
+        background: #070b12;
+        color: #e6ecf2;
+        font-family: "Inter", ui-sans-serif, system-ui, sans-serif;
+        -webkit-font-smoothing: antialiased;
+      }
+      ::selection {
+        background: rgba(34, 211, 238, 0.30);
+      }
+      ::-webkit-scrollbar {
+        width: 9px;
+        height: 9px;
+      }
+      ::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: rgba(120, 160, 200, 0.14);
+        border-radius: 8px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: rgba(34, 211, 238, 0.45);
+      }
+      input[type="range"] {
+        -webkit-appearance: none;
+        height: 4px;
+        border-radius: 4px;
+        background: rgba(255, 255, 255, 0.1);
+      }
+      input[type="range"]::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        width: 14px;
+        height: 14px;
+        border-radius: 50%;
+        background: #22d3ee;
+        cursor: pointer;
+        box-shadow: 0 0 0 4px rgba(34, 211, 238, 0.18);
+      }
+
+      @keyframes fcFade {
+        from { opacity: 0; transform: translateY(6px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+      .fc-fade { animation: fcFade 0.4s ease both; }
+      @keyframes fcPulse {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.35; }
+      }
+      .fc-pulse { animation: fcPulse 1.4s ease-in-out infinite; }
+      @keyframes fcDash {
+        to { stroke-dashoffset: -24; }
+      }
+      .fc-flow { stroke-dasharray: 4 6; animation: fcDash 0.7s linear infinite; }
+      @keyframes fcShimmer {
+        0% { background-position: -400px 0; }
+        100% { background-position: 400px 0; }
+      }
+      .fc-skeleton {
+        background: linear-gradient(90deg, rgba(120,160,200,0.04) 25%, rgba(120,160,200,0.10) 37%, rgba(120,160,200,0.04) 63%);
+        background-size: 800px 100%;
+        animation: fcShimmer 1.4s linear infinite;
+      }
+      @keyframes fcToastIn {
+        from { opacity: 0; transform: translateX(30px); }
+        to { opacity: 1; transform: translateX(0); }
+      }
+      .fc-toast { animation: fcToastIn 0.28s cubic-bezier(0.2, 0.8, 0.2, 1) both; }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
