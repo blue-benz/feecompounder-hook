@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1480" height="660" viewBox="0 0 1480 660">
+  <rect width="1480" height="660" fill="#0b1020"/>
+  <rect x="34" y="34" width="1412" height="592" rx="18" fill="#111827" stroke="#334155" stroke-width="2"/>
+  <text x="64" y="84" fill="#e5e7eb" font-family="Menlo, Consolas, monospace" font-size="28" font-weight="700">FeeCompounder Hook - forge coverage</text>
+  <text x="64" y="126" fill="#94a3b8" font-family="Menlo, Consolas, monospace" font-size="20">forge coverage --report summary --no-match-coverage 'script|test|lib'</text>
+  <text x="64" y="184" fill="#22c55e" font-family="Menlo, Consolas, monospace" font-size="24">100.00% line coverage · 100.00% function coverage · 37 tests passing</text>
+  <text x="64" y="244" fill="#e5e7eb" font-family="Menlo, Consolas, monospace" font-size="19">File                               % Lines           % Statements     % Branches     % Funcs</text>
+  <text x="64" y="278" fill="#64748b" font-family="Menlo, Consolas, monospace" font-size="19">------------------------------------------------------------------------------------------------</text>
+  <text x="64" y="312" fill="#e5e7eb" font-family="Menlo, Consolas, monospace" font-size="19">src/FeeCompounderHook.sol          100.00% (202/202) 92.15% (223/242) 65.22% (30/46) 100.00% (40/40)</text>
+  <text x="64" y="346" fill="#e5e7eb" font-family="Menlo, Consolas, monospace" font-size="19">src/adapters/ManagedYieldRoute.sol 100.00% (25/25)   81.82% (18/22)   33.33% (2/6)   100.00% (8/8)</text>
+  <text x="64" y="380" fill="#e5e7eb" font-family="Menlo, Consolas, monospace" font-size="19">src/rsc/FeeCompounderRSC.sol       100.00% (89/89)   98.89% (89/90)   92.31% (12/13) 100.00% (11/11)</text>
+  <text x="64" y="414" fill="#64748b" font-family="Menlo, Consolas, monospace" font-size="19">------------------------------------------------------------------------------------------------</text>
+  <text x="64" y="448" fill="#22c55e" font-family="Menlo, Consolas, monospace" font-size="19">Total                              100.00% (316/316) 93.22% (330/354) 67.69% (44/65) 100.00% (59/59)</text>
+  <text x="64" y="580" fill="#fbbf24" font-family="Menlo, Consolas, monospace" font-size="18">Note: branch coverage is shown honestly; README does not claim 100% branch coverage.</text>
+</svg>
